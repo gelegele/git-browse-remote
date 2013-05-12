@@ -135,7 +135,7 @@ mode   ||= :rev
 remote_url = `git config remote.#{remote}.url`[/.+/] or
     abort "Could not get remote url: #{remote}"
 
-host, *path = remote_url.sub(%r(^\w+://), '').sub(/^[\w-]+@/, '').split(/[\/:]+/)
+host, *path = remote_url.sub(%r(^(\w+://|\w+@)), '').sub(/^[\w-]+:[\w-]+@/, '').split(/[\/:]+/)
 path.last.sub!(/\.git$/, '')
 path = Path.new(path)
 
